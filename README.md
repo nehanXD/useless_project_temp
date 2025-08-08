@@ -1,96 +1,101 @@
 <img width="3188" height="1202" alt="frame (3)" src="https://github.com/user-attachments/assets/517ad8e9-ad22-457d-9538-a9e62d137cd7" />
 
 
-# [Project Name] 🎯
+# JACKBEATS 🎯
 
 
 ## Basic Details
-### Team Name: [Name]
+### Team Name: JACKBOYS
 
 
 ### Team Members
-- Team Lead: [Name] - [College]
-- Member 2: [Name] - [College]
-- Member 3: [Name] - [College]
+- Team Lead: Nehan Bahar - SCMS SCHOOL OF ENGINEERING AND TECHNOLOGY
+- Member 2: Hadi Konnola - SCMS SCHOOL OF ENGINEERING AND TECHNOLOGY
 
 ### Project Description
-[2-3 lines about what your project does]
+JACKBEATS is a gloriously useless browser app that turns frantic keyboard mashing into questionable dance beats and reactive neon blobs. Each key triggers a sound; your chaos becomes a loop. Absolutely no musical talent required.
 
 ### The Problem (that doesn't exist)
-[What ridiculous problem are you solving?]
+Idle finger-tapping produces nothing but noise and judgmental looks. Your keyboard wants to be a drum machine. Your laptop fan wants a concert.
 
 ### The Solution (that nobody asked for)
-[How are you solving it? Keep it fun!]
+Map every keystroke to a drum/percussion sample, quantize it to a grid, loop it at a fixed BPM, and splash visuals that pretend it’s art. Export your “masterpiece” just to annoy your friends.
 
 ## Technical Details
 ### Technologies/Components Used
 For Software:
-- [Languages used]
-- [Frameworks used]
-- [Libraries used]
-- [Tools used]
+- Languages: TypeScript, HTML, CSS
+- Frameworks/Build: Vite (dev server + build)
+- Libraries: Tone.js (audio), Canvas 2D (visuals), ESLint/Prettier (lint/format)
+- Tools: Node.js (>= 18), npm
 
 For Hardware:
-- [List main components]
-- [List specifications]
-- [List tools required]
+- Components: Any keyboard, speakers/headphones
+- Specs: Works in modern Chromium/Firefox
+- Tools required: None (optional USB MIDI keyboard for extra chaos)
+
+### Repository Structure (technical files)
+- index.html — base document and root app container
+- src/main.ts — app bootstrap, wiring audio + UI
+- src/audio/engine.ts — Tone.js Transport, Sampler, effects chain
+- src/audio/mapping.ts — keyboard→sample mapping, quantization
+- src/ui/visualizer.ts — analyser node + Canvas renderer
+- src/ui/controls.ts — play/stop, BPM, kit selection, record toggle
+- styles/main.css — minimal styles
+- public/samples/ — kick.wav, snare.wav, hat.wav, perc/*.wav
+- public/icons/ — app icon and favicon
 
 ### Implementation
 For Software:
 # Installation
-[commands]
+- Prereq: Node.js >= 18
+- Commands:
+  - npm install
+  - npm run dev        (start local dev server)
+  - npm run build      (production build)
+  - npm run preview    (preview production build)
 
 # Run
-[commands]
+- Visit the printed local URL (usually http://localhost:5173)
+- Smash your keyboard; press Space to start/stop; use on-screen controls for BPM/kit
 
 ### Project Documentation
 For Software:
 
 # Screenshots (Add at least 3)
-![Screenshot1](Add screenshot 1 here with proper name)
-*Add caption explaining what this shows*
+![Home](Add screenshot of landing UI with controls)
+*Landing screen with transport, BPM, and kit selector*
 
-![Screenshot2](Add screenshot 2 here with proper name)
-*Add caption explaining what this shows*
+![Typing](Add screenshot while typing with highlights)
+*Keystroke-to-sample mapping in action*
 
-![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
+![Visualizer](Add screenshot of visuals)
+*Reactive blobs driven by the audio analyser*
 
 # Diagrams
 ![Workflow](Add your workflow/architecture diagram here)
-*Add caption explaining your workflow*
+*KeyboardEvent → Mapping → Tone.js Sampler → Transport/FX → Output → Analyser → Canvas*
 
 For Hardware:
 
 # Schematic & Circuit
-![Circuit](Add your circuit diagram here)
-*Add caption explaining connections*
-
-![Schematic](Add your schematic diagram here)
-*Add caption explaining the schematic*
+N/A (only your keyboard and speakers)
 
 # Build Photos
-![Components](Add photo of your components here)
-*List out all components shown*
-
-![Build](Add photos of build process here)
-*Explain the build steps*
-
-![Final](Add photo of final product here)
-*Explain the final build*
+![Setup](Add photo)
+*Laptop, a keyboard, and regret*
 
 ### Project Demo
 # Video
 [Add your demo video link here]
-*Explain what the video demonstrates*
+*A 30–60s run-through: start/stop, BPM change, typing chaos, visuals, optional export*
 
 # Additional Demos
-[Add any extra demo materials/links]
+[Add any extra demo links: short social clip, GIF, or beats “album”]
 
 ## Team Contributions
-- [Name 1]: [Specific contributions]
-- [Name 2]: [Specific contributions]
-- [Name 3]: [Specific contributions]
+- Nehan Bahar: Audio engine (Tone.js), keystroke mapping, quantization, export
+- Hadi Konnola: UI/visuals (Canvas), controls, build tooling, project polish
 
 ---
 Made with ❤️ at TinkerHub Useless Projects 

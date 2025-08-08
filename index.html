@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>JackBeats — Browser Beat Machine</title>
+    <meta name="description" content="JackBeats: a browser-based virtual beat machine powered by Strudel.cc" />
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Fonts: Edgy look -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Chakra+Petch:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="./style.css" />
+    <!-- Strudel.cc via CDN (@strudel/web) -->
+    <script defer src="https://unpkg.com/@strudel/web@1.0.3"></script>
+    <!-- App script -->
+    <script defer src="./script.js"></script>
+  </head>
+  <body class="min-h-screen bg-slate-950 text-slate-100 antialiased">
+    <header class="border-b border-slate-800 bg-slate-900/60 backdrop-blur supports-[backdrop-filter]:bg-slate-900/50">
+      <div class="mx-auto max-w-7xl px-4 py-4 flex items-center justify-between gap-4">
+        <h1 class="text-2xl font-bold tracking-tight">
+          JackBeats
+        </h1>
+        <div class="text-xs opacity-70 hidden sm:flex items-center gap-2">
+          <span>Powered by Strudel.cc</span>
+          <span id="strudelStatus" class="ml-2 inline-flex items-center gap-1 rounded-full border border-slate-700 bg-slate-900 px-2 py-0.5 text-[11px] text-amber-300">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+            <span>Checking…</span>
+          </span>
+        </div>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-7xl px-4 py-6 grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6">
+      <!-- Sequencer Section -->
+      <section aria-labelledby="sequencer-title" class="space-y-3">
+        <div class="flex items-center justify-between">
+          <h2 id="sequencer-title" class="text-lg font-semibold">16-Step Sequencer</h2>
+          <div class="flex items-center gap-3">
+            <label for="tempo" class="text-sm opacity-80">Tempo</label>
+            <input id="tempo" type="range" min="40" max="200" value="100" class="accent-emerald-400 w-40" />
+            <output id="tempoValue" class="text-sm tabular-nums w-12 text-right">100</output>
+            <span class="text-sm opacity-70">BPM</span>
+          </div>
+        </div>
+
+        <!-- Step labels row -->
+        <div class="rounded-lg border border-slate-800 overflow-hidden">
+          <div class="grid grid-cols-[160px_repeat(16,minmax(0,1fr))] text-xs bg-slate-900/50">
+            <div class="px-3 py-2 border-r border-slate-800 font-medium">Instrument</div>
+            <!-- Dynamic step headers injected by JS -->
+            <div id="step-headers" class="contents"></div>
+          </div>
+
+          <!-- Grid inserted here -->
+          <div id="grid" class="grid grid-cols-[160px_repeat(16,minmax(0,1fr))]"></div>
+        </div>
+      </section>
+
+      <!-- Control Panel -->
+      <aside aria-labelledby="controls-title" class="space-y-4">
+        <h2 id="controls-title" class="text-lg font-semibold">Control Panel</h2>
+
+        <div class="rounded-lg border border-slate-800 p-4 space-y-3 bg-slate-900/40">
+          <div class="grid grid-cols-3 gap-2">
+            <button id="playBtn" class="btn-primary">Play</button>
+            <button id="stopBtn" class="btn-secondary">Stop</button>
+            <button id="recordBtn" class="btn-secondary" title="Record hits while playing (keys 1–0)">Record</button>
+          </div>
+
+          <div class="space-y-2">
+            <label for="preset" class="block text-sm opacity-80">Preset</label>
+            <select id="preset" class="w-full rounded-md bg-slate-900 border border-slate-800 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500/50">
+              <option value="custom">— Custom —</option>
+              <option value="hiphop">Hip-Hop</option>
+              <option value="house">House</option>
+              <option value="trap">Trap</option>
+              <option value="funk">Funk</option>
+            </select>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <button id="saveBtn" class="btn-secondary">Save Pattern</button>
+            <div class="grid grid-cols-2 gap-2">
+              <button id="loadBtn" class="btn-secondary">Load Pattern</button>
+              <button id="clearBtn" class="btn-secondary" title="Clear all steps">Clear</button>
+            </div>
+          </div>
+
+          <div class="text-xs opacity-70 leading-relaxed">
+            • Per-track controls are below each row: Sound, Volume, and Pan
+          </div>
+        </div>
+
+        <div class="rounded-lg border border-slate-800 bg-slate-900/40">
+          <details class="p-4" open>
+            <summary class="cursor-pointer select-none text-sm font-medium opacity-90">Tips</summary>
+            <ul class="mt-2 text-sm opacity-80 list-disc pl-5 space-y-1">
+              <li>Click cells to toggle steps. Drag across cells to paint.</li>
+              <li>Use presets for quick grooves, then tweak.</li>
+              <li>Adjust tempo, volume, and pan per instrument.</li>
+              <li>Enable Record, hit Play, then press number keys 1–0 or tap row pads to record in time.</li>
+            </ul>
+          </details>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="mt-8 border-t border-slate-800 py-6">
+      <div class="mx-auto max-w-7xl px-4 text-sm opacity-80 space-y-1">
+        
+      </div>
+    </footer>
+  </body>
+</html>
