@@ -159,10 +159,27 @@ function buildGrid() {
     if (inst) sel.value = state.perTrack[inst].sample;
   });
   // Pad buttons: audition or record to current step
+  // Unified pad handler: left-click, right-click, and touch
+  // Left-click only: use click event to trigger pads
   gridEl.addEventListener('click', async (e) => {
-    const t = e.target;
-    if (!(t instanceof HTMLButtonElement)) return;
-    const inst = t.getAttribute('data-pad');
+    // Resolve the clicked pad button even if the event target is a text node
+    let btn = null;
+    if (typeof e.composedPath === 'function') {
+      const path = e.composedPath();
+      for (const n of path) {
+        if (n instanceof HTMLElement && n.matches && n.matches('button[data-pad]')) { btn = n; break; }
+      }
+    }
+    if (!btn) {
+      const tgt = e.target;
+      if (tgt instanceof HTMLElement && typeof tgt.closest === 'function') {
+        btn = tgt.closest('button[data-pad]');
+      } else if (tgt && tgt.parentElement && typeof tgt.parentElement.closest === 'function') {
+        btn = tgt.parentElement.closest('button[data-pad]');
+      }
+    }
+    if (!btn) return;
+    const inst = btn.getAttribute('data-pad');
     if (!inst) return;
     await audition(inst);
     if (state.record && state.playing) {

@@ -13,89 +13,82 @@
 - Member 2: Hadi Konnola - SCMS SCHOOL OF ENGINEERING AND TECHNOLOGY
 
 ### Project Description
-JACKBEATS is a gloriously useless browser app that turns frantic keyboard mashing into questionable dance beats and reactive neon blobs. Each key triggers a sound; your chaos becomes a loop. Absolutely no musical talent required.
+JACKBEATS is a gloriously useless browser beat machine. It’s a 16‑step sequencer with drum rows, tempo, presets, record mode, and per‑track controls. It runs entirely in your browser.
 
 ### The Problem (that doesn't exist)
-Idle finger-tapping produces nothing but noise and judgmental looks. Your keyboard wants to be a drum machine. Your laptop fan wants a concert.
+Idle finger-tapping produces nothing but noise and judgmental looks. Your keyboard wants to be a drum machine.
 
 ### The Solution (that nobody asked for)
-Map every keystroke to a drum/percussion sample, quantize it to a grid, loop it at a fixed BPM, and splash visuals that pretend it’s art. Export your “masterpiece” just to annoy your friends.
+Click, tap pads, or use number keys to drop hits onto a quantized grid. Loop at your chosen BPM and pretend it’s art. Save and load patterns to keep the chaos.
 
 ## Technical Details
 ### Technologies/Components Used
 For Software:
-- Languages: TypeScript, HTML, CSS
-- Frameworks/Build: Vite (dev server + build)
-- Libraries: Tone.js (audio), Canvas 2D (visuals), ESLint/Prettier (lint/format)
-- Tools: Node.js (>= 18), npm
+- Languages: HTML, CSS, JavaScript
+- Libraries (CDN):
+  - @strudel/web (Strudel.cc) for pattern scheduling and audio playback
+  - Tailwind CSS (styling)
+- Tools: None required to run (optional: a simple static server / VS Code Live Server)
 
 For Hardware:
 - Components: Any keyboard, speakers/headphones
 - Specs: Works in modern Chromium/Firefox
 - Tools required: None (optional USB MIDI keyboard for extra chaos)
 
-### Repository Structure (technical files)
-- index.html — base document and root app container
-- src/main.ts — app bootstrap, wiring audio + UI
-- src/audio/engine.ts — Tone.js Transport, Sampler, effects chain
-- src/audio/mapping.ts — keyboard→sample mapping, quantization
-- src/ui/visualizer.ts — analyser node + Canvas renderer
-- src/ui/controls.ts — play/stop, BPM, kit selection, record toggle
-- styles/main.css — minimal styles
-- public/samples/ — kick.wav, snare.wav, hat.wav, perc/*.wav
-- public/icons/ — app icon and favicon
+### Repository Structure
+- index.html — markup, Tailwind CDN, Strudel CDN, app bootstrapping
+- script.js — sequencer logic, Strudel integration, save/load, presets
+- style.css — custom theme and component styles
+- README.md — this file
 
-### Implementation
-For Software:
-# Installation
-- Prereq: Node.js >= 18
-- Commands:
-  - npm install
-  - npm run dev        (start local dev server)
-  - npm run build      (production build)
-  - npm run preview    (preview production build)
+### How to Run
+- Easiest: open index.html in a modern browser.
+- Recommended: serve the folder with any static server (avoids local file restrictions and ensures CDN loads).
+  - VS Code: use the Live Server extension.
+  - Python (optional): `python -m http.server 5500` then open http://localhost:5500/
+  - Any static server works.
 
-# Run
-- Visit the printed local URL (usually http://localhost:5173)
-- Smash your keyboard; press Space to start/stop; use on-screen controls for BPM/kit
+Live demo (if deployed):
+- https://useless-project-temp-mocha.vercel.app/
+
+### Controls & Features
+- 16‑Step grid per instrument — click cells to toggle; drag to paint across cells.
+- Pads (per row) — left‑click to audition the sound; when Record is on and playing, it writes to the current step.
+- Transport — Play / Stop.
+- Tempo — slider (40–200 BPM).
+- Record — toggles live input recording to the playhead. Number keys 1–0 map to the first 10 instruments.
+- Presets — Hip‑Hop, House, Trap, Funk.
+- Per‑track controls — Sound (sample token), Volume, Pan.
+- Save / Load — stores pattern and per‑track settings in localStorage.
+- Clear — clears all steps.
+
+Note: Pads respond to left‑click only; right‑click is not used.
 
 ### Project Documentation
 For Software:
 
 # Screenshots (Add at least 3)
-![Home](Add screenshot of landing UI with controls)
-*Landing screen with transport, BPM, and kit selector*
+![alt text](jackbeats1.png)
+![alt text](jackbeats2.png)
 
-![Typing](Add screenshot while typing with highlights)
-*Keystroke-to-sample mapping in action*
 
-![Visualizer](Add screenshot of visuals)
-*Reactive blobs driven by the audio analyser*
 
-# Diagrams
-![Workflow](Add your workflow/architecture diagram here)
-*KeyboardEvent → Mapping → Tone.js Sampler → Transport/FX → Output → Analyser → Canvas*
 
-For Hardware:
-
-# Schematic & Circuit
-N/A (only your keyboard and speakers)
-
-# Build Photos
-![Setup](Add photo)
-*Laptop, a keyboard, and regret*
 
 ### Project Demo
 # Video
-[Add your demo video link here]
-*A 30–60s run-through: start/stop, BPM change, typing chaos, visuals, optional export*
+<video controls src="jack.mp4" title="Title"></video>
 
-# Additional Demos
-[Add any extra demo links: short social clip, GIF, or beats “album”]
 
 ## Team Contributions
-- Nehan Bahar: Audio engine (Tone.js), keystroke mapping, quantization, export
-- Hadi Konnola: UI/visuals (Canvas), controls, build tooling, project polish
+- Nehan Bahar: concept, code, design
+- Hadi Konnola: code, output, debug
+
+## Troubleshooting
+- No sound? Many browsers require a user gesture to start audio. Click Play or a Pad first.
+- “Strudel not found” or no drums? Ensure you’re online so the @strudel/web CDN and sample bank can load.
+- Latency or crackles? Close extra tabs, try a different browser, or reduce system load.
+- Saved pattern didn’t load? localStorage is origin‑scoped; loading from a different URL/port won’t see prior saves.
 
 ---
 Made with ❤️ at TinkerHub Useless Projects 
